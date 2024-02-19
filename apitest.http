@@ -1,0 +1,15 @@
+POST https://poker.evenbetpoker.com/api/web/v2/login?clientId=default
+Content-Type: application/json
+
+{
+    "clientId": "default", 
+    "login": "richard",
+    "password": "poker"
+}
+
+###
+
+GET https://poker.evenbetpoker.com/api/web/v2/casino/games?clientId=default
+Content-Type: application/json
+
+###
