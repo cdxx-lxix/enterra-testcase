@@ -23,3 +23,17 @@ Content-Type: application/json
 }
 
 ###
+
+GET https://poker.evenbetpoker.com/api/web/v2/users/me/balance?clientId=default&auth=API7419606FDB1594F7FA21F924D462E3A5
+
+###
+
+POST https://poker.evenbetpoker.com/api/web/v2/casino/games/544816/session-demo?clientId=default
+Content-Type: application/json
+
+{
+    "clientId": "default", 
+    "gameId": "544816"
+}
+
+###

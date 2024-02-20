@@ -9,7 +9,7 @@
                 <legend><label for="password">Password</label></legend>
                 <input type="password" id="password" name="password" placeholder="*********" required v-model="passwordValue">
             </fieldset>
-            <button type="submit" @click.prevent="store.loginUser(loginValue, passwordValue)">Log in</button>
+            <button type="submit" @click.prevent="handleLogin(loginValue, passwordValue)">Log in</button>
         </form>
     </section>
 </template>
@@ -17,9 +17,20 @@
 <script setup>
 import { ref } from 'vue'
 import { useCasinoStore } from "@/stores/casino"
+import router from '@/router';
 const store = useCasinoStore()
 const loginValue = ref(null)
 const passwordValue = ref(null)
+
+const handleLogin = (login, password) => {
+    store.loginUser(login, password).then(() => {
+        // Redirect to the home page after successful login
+        router.push('/');
+    }).catch((error) => {
+        // Handle login error, if necessary
+        console.error('Login error:', error);
+    });
+}
 </script>
 
 <style>
