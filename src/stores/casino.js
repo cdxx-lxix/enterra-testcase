@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useCasinoStore = defineStore('casino', () => {
@@ -7,6 +7,7 @@ export const useCasinoStore = defineStore('casino', () => {
   const token = ref('')
   const refreshToken = ref('')
 
+  // Run this function every 800 seconds cuz' every 900 seconds the token expires
   const doRefreshToken = async () => {
     let data = {
       clientId: 'default',
@@ -31,15 +32,12 @@ export const useCasinoStore = defineStore('casino', () => {
       const responseData = await response.json();
       token.value = responseData.token;
       refreshToken.value = responseData['refresh-token'];
-      // TODO: YOU STOPPED HERE
-      console.log('New Token:', token.value);
-      console.log('New Refresh Token:', refreshToken.value);
     } catch (error) {
       console.error('Fetch Error:', error);
     }
   }
 
-  const isLogged = ref(false)
+  const isAuthenticated = ref(false)
   const loginUser = async (login, password) => {
     let data = {
       clientId: 'default',
@@ -66,13 +64,14 @@ export const useCasinoStore = defineStore('casino', () => {
       const attributes = responseData.data[0].attributes
       token.value = attributes.token
       refreshToken.value = attributes['refresh-token']
-      console.log('Token:', token.value);
-      console.log('Refresh Token:', refreshToken.value);
-      isLogged.value = true
+      isAuthenticated.value = true
+      setInterval(() => {
+        doRefreshToken()
+      },  800 *  1000); // Updates token every 800 seconds (~13 min)
     } catch (error) {
       console.error('Fetch Error:', error)
     }
   }
 
-  return { balance, token, refreshToken, isLogged, loginUser, doRefreshToken }
+  return { balance, token, refreshToken, isAuthenticated, loginUser, doRefreshToken }
 })

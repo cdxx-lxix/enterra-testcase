@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { useCasinoStore } from "@/stores/casino";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,13 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue')
     }
   ]
+})
+
+router.beforeEach( async (to, from, next) => {
+  // Redirects to login if a user isn't logged in
+  const store = useCasinoStore;
+  if (to.path !== '/login' && !store.isAuthenticated) next({ path: '/login' })
+  else next()
 })
 
 export default router

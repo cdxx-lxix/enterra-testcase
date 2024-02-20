@@ -1,6 +1,6 @@
 <template>
     <section>
-        <form action="" method="POST">
+        <form method="POST">
             <fieldset>
                 <legend><label for="login">Login</label></legend>
                 <input type="text" id="login" name="login" placeholder="Wasya" required v-model="loginValue">
@@ -11,8 +11,6 @@
             </fieldset>
             <button type="submit" @click.prevent="store.loginUser(loginValue, passwordValue)">Log in</button>
         </form>
-
-        <button @click.prevent="store.doRefreshToken">Refresh</button>
     </section>
 </template>
 
