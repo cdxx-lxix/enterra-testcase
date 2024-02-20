@@ -2,6 +2,8 @@
   <header>
     <nav>
       <RouterLink to="/">Home</RouterLink>
+      <a href="https://github.com/cdxx-lxix/enterra-testcase" target="_blank">Github</a>
+      <a href="https://mladich.com/">My portfolio</a>
     </nav>
   </header>
 
@@ -22,6 +24,7 @@ html {
     nav {
       a {
         padding: 10px 20px;
+        margin-right: 4px;
         background-color: #F9CB4088;
         text-transform: uppercase;
         font-weight: bold;
