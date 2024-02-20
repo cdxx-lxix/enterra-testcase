@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-const props = defineProps([
+defineProps([
     'currency',
     'available',
     'inplay',

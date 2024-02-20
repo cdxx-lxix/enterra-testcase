@@ -21,11 +21,11 @@ const router = createRouter({
   ]
 })
 
-// router.beforeEach( async (to, from, next) => {
-//   // Redirects to login if a user isn't logged in
-//   const store = useCasinoStore();
-//   if (to.path !== '/login' && !store.isAuthenticated) next({ path: '/login' })
-//   else next()
-// })
+router.beforeEach( async (to, from, next) => {
+  // Redirects to login if a user isn't logged in
+  const store = useCasinoStore();
+  if (to.path !== '/login' && !store.isAuthenticated) next({ path: '/login' })
+  else next()
+})
 
 export default router

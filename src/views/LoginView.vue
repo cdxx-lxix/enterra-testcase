@@ -9,8 +9,9 @@
 import LoginForm from '@/components/LoginForm.vue';
 </script>
 
-<style>
+<style scoped>
 main {
+  flex-direction: column;
   h2{
     text-align: center;
     width: 100%;

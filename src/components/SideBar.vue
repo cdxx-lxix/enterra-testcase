@@ -7,48 +7,16 @@
             <img :src="avatar" alt="Profile Picture">
         </div>
         <hr>
-        <CurrencyInfo v-for="data in mockData.data" :currency="data.attributes.currency" :available="data.attributes.available" :inplay="data.attributes['in-play']" :bonus="data.attributes.bonus" :key="data.id"/>
+        <CurrencyInfo v-for="data in store.balance" :currency="data.attributes.currency" :available="data.attributes.available" :inplay="data.attributes['in-play']" :bonus="data.attributes.bonus" :key="data.id"/>
     </fieldset>
 </template>
 
 <script setup>
 import avatar from '@/assets/user_avatar.png'
 import CurrencyInfo from './CurrencyInfo.vue';
+import { useCasinoStore } from "@/stores/casino"
+const store = useCasinoStore()
 
-const mockData = {
-  "data": [
-    {
-      "id": "2780206-80",
-      "type": "balance",
-      "attributes": {
-        "currency": "USD",
-        "available": 64383390,
-        "in-play": 0,
-        "bonus": 0
-      }
-    },
-    {
-      "id": "2780206-65",
-      "type": "balance",
-      "attributes": {
-        "currency": "CUSTOM1",
-        "available": 378230000,
-        "in-play": 0,
-        "bonus": 0
-      }
-    },
-    {
-      "id": "2780206-66",
-      "type": "balance",
-      "attributes": {
-        "currency": "CUSTOM2",
-        "available": 1297377,
-        "in-play": 0,
-        "bonus": 0
-      }
-    }
-  ]
-}
 </script>
 
 <style>
